@@ -14,9 +14,9 @@ namespace Game
         private int endsnakeX, endsnakeY;
         private const int x = 10, y = 10;
         private double Time = 300;
-        ConsoleKeyInfo KeyInfo = new ConsoleKeyInfo('E', ConsoleKey.Escape, false, false, false);
+        ConsoleKeyInfo KeyInfo = new ConsoleKeyInfo();
         private string[,] mass = new string[x,y];
-        char snake = '@';
+        char snake = 'o';
         int heroX, heroY, foodX, foodY;
         Random rand = new Random();
         public Easy()
@@ -82,7 +82,7 @@ namespace Game
             for (int i = snakeY.Count - 1; i >= 0; --i)
             {
                 Console.SetCursorPosition(snakeY[i], snakeX[i]);
-                Console.Write("@");
+                Console.Write("o");
             }
 
         }
@@ -99,10 +99,6 @@ namespace Game
         }
         public void MoveHero()
         {
-            if (KeyInfo.Key == ConsoleKey.Escape || Console.KeyAvailable == true)
-            {
-                KeyInfo = Console.ReadKey();
-            }
             switch (KeyInfo.Key)
             {
                 case ConsoleKey.UpArrow:
