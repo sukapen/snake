@@ -17,9 +17,9 @@ namespace SlimySnake
             //Console.CursorVisible = false;
             //Console.SetWindowSize(x + 1, y + 1);
             //Console.SetBufferSize(x + 1, y + 1);
-            //Menu M = new Menu();
-            //M.Present();
-            Easy E = new Easy();
+            Menu M = new Menu();
+            M.Present();
+            /*Easy E = new Easy();
             do
             {
                 E.UpdateMap();
@@ -27,7 +27,7 @@ namespace SlimySnake
                 E.ClearMap();
                 E.MoveHero();
                 E.GameOver();
-            } while (E.end);
+            } while (E.end);*/
         }
     }
 }
