@@ -90,6 +90,15 @@ namespace SlimySnake
             {
                 Console.Clear();
                 Console.WriteLine("В разработке.");
+                /*Easy E = new Easy();
+            do
+            {
+                E.UpdateMap();
+                E.NewFood();
+                E.ClearMap();
+                E.MoveHero();
+                E.GameOver();
+            } while (E.end);*/
             }
             else if (Choise.Key == ConsoleKey.A)
             {
