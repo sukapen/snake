@@ -83,7 +83,7 @@ namespace SlimySnake
             {
                 Console.SetCursorPosition(snakeY[i], snakeX[i]);
                 Console.Write("o");
-            }
+            } 
 
         }
         public void ClearMap()
