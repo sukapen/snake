@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -88,27 +88,42 @@ namespace SlimySnake
             Choise = Console.ReadKey();
             if (Choise.Key == ConsoleKey.Q)
             {
-                Console.Clear();
-                Console.WriteLine("В разработке.");
-                /*Easy E = new Easy();
-            do
-            {
-                E.UpdateMap();
-                E.NewFood();
-                E.ClearMap();
-                E.MoveHero();
-                E.GameOver();
-            } while (E.end);*/
+                Easy E = new Easy();
+                do
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    E.UpdateMap();
+                    E.NewFood();
+                    E.ClearMap();
+                    E.MoveHero();
+                    E.GameOver();
+                } while (E.end);
             }
             else if (Choise.Key == ConsoleKey.A)
             {
-                Console.Clear();
-                Console.WriteLine("В разработке.");
+                Normal N = new Normal();
+                do
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    N.UpdateMap();
+                    N.NewFood();
+                    N.ClearMap();
+                    N.MoveHero();
+                    N.GameOver();
+                } while (N.end);
             }
             else if (Choise.Key == ConsoleKey.Z)
             {
-                Console.Clear();
-                Console.WriteLine("В разработке.");
+                Hard H = new Hard();
+                do
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    H.UpdateMap();
+                    H.NewFood();
+                    H.ClearMap();
+                    H.MoveHero();
+                    H.GameOver();
+                } while (H.end);
             }
             else if (Choise.Key == ConsoleKey.Escape)
             {
@@ -172,5 +187,31 @@ namespace SlimySnake
                 Upra();
             }
         }
+        public void GameOver()
+        {
+            Console.WriteLine("");
+            Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+            Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+            Console.WriteLine(" ████████████████████████■    GAME OVER    ■████████████████████████");
+            Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+            Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+            Console.WriteLine(" █████████████■ ДЛЯ ПЕРЕХОДА В ГЛАВНОЕ МЕНЮ НАЖМИТЕ ESC ■███████████");
+            Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+            Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+            ConsoleKeyInfo Choise = new ConsoleKeyInfo();
+            Choise = Console.ReadKey();
+            if (Choise.Key == ConsoleKey.Escape)
+            {
+                Console.Clear();
+                MainMenu();
+            }
+            else
+            {
+                Console.Beep();
+                Console.Clear();
+                GameOver();
+            }
+        }
     }
 }
+
