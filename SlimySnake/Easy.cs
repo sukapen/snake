@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,13 +14,16 @@ namespace SlimySnake
         private int endsnakeX, endsnakeY;
         private const int x = 10, y = 10;
         private double Time = 300;
-        ConsoleKeyInfo KeyInfo = new ConsoleKeyInfo();
+        ConsoleKeyInfo KeyInfo = new ConsoleKeyInfo('E', ConsoleKey.Escape, false, false, false);
         private string[,] mass = new string[x,y];
         char snake = 'o';
         int heroX, heroY, foodX, foodY;
         Random rand = new Random();
         public Easy()
         {
+            Console.SetWindowSize(x + 6, y + 6);
+            Console.SetBufferSize(x + 6, y + 6);
+            Console.CursorVisible = false;
             CompletionMap();
             Starting();
             Mapping();
@@ -38,7 +41,7 @@ namespace SlimySnake
             snakeY.Add(heroY);
 
             mass[snakeX[0], snakeY[0]] = snake.ToString();
-            mass[foodX, foodY] = "*";
+            mass[foodX, foodY] = "♥";
         }
         private void ReversX()
         {
@@ -56,8 +59,6 @@ namespace SlimySnake
             {
                 for (int j = 0; j < y; j++)
                 {
-                    Console.SetCursorPosition(i, j);
-                    Console.BackgroundColor = ConsoleColor.White;
                     mass[i, j] = " ";
                 }
             }
@@ -68,17 +69,16 @@ namespace SlimySnake
             {
                 for (int j = 0; j < y; j++)
                 {
-                    Console.BackgroundColor = ConsoleColor.White;
-                    Console.Write(mass[i, j]);
+                   Console.Write(mass[i, j]);
                 }
                 Console.WriteLine();
             }
-            Console.BackgroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.White;
         }
         public void UpdateMap()
         {
             Console.SetCursorPosition(foodY, foodX);
-            Console.Write("*");
+            Console.Write("♥");
             for (int i = snakeY.Count - 1; i >= 0; --i)
             {
                 Console.SetCursorPosition(snakeY[i], snakeX[i]);
@@ -99,6 +99,10 @@ namespace SlimySnake
         }
         public void MoveHero()
         {
+            if (KeyInfo.Key == ConsoleKey.Escape || Console.KeyAvailable == true)
+            {
+                KeyInfo = Console.ReadKey();
+            }
             switch (KeyInfo.Key)
             {
                 case ConsoleKey.UpArrow:
@@ -141,7 +145,7 @@ namespace SlimySnake
             if (snakeY.Count == snakeX.Count)
             {
                 CompletionMap();
-                mass[foodX, foodY] = "*";
+                mass[foodX, foodY] = "♥";
                 for (int i = 0; i < snakeX.Count; ++i)
                 {
                     mass[snakeX[i], snakeY[i]] = snake.ToString();
@@ -171,11 +175,10 @@ namespace SlimySnake
                 {
                     if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i])
                     {
-                        Console.WriteLine("Game Over");
                         end = false;
-                        break;
+                        Menu M = new Menu();
+                        M.GameOver();
                     }
-
                 }
             }
         }
