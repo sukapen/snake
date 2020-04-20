@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace SlimySnake
-{
+{  
     public class Easy
     {
         private List<int> snakeX = new List<int>();
