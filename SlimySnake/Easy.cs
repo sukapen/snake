@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace SlimySnake
-{  
+{
     public class Easy
     {
         private List<int> snakeX = new List<int>();
@@ -11,18 +11,21 @@ namespace SlimySnake
         public bool end = true;
         private bool eating = false;
         private int eX, eY;
+        public int point = 0;
         private int endsnakeX, endsnakeY;
         private const int x = 10, y = 10;
+        static readonly int xg = 69;
+        static readonly int yg = 9;
         private double Time = 300;
-        ConsoleKeyInfo KeyInfo = new ConsoleKeyInfo('E', ConsoleKey.Escape, false, false, false);
+        ConsoleKeyInfo KeyInfo = new ConsoleKeyInfo();
         private string[,] mass = new string[x,y];
-        char snake = 'o';
+        char snake;
         int heroX, heroY, foodX, foodY;
         Random rand = new Random();
         public Easy()
         {
-            Console.SetWindowSize(x + 6, y + 6);
-            Console.SetBufferSize(x + 6, y + 6);
+            Console.SetWindowSize(x + 30, y + 15);
+            Console.SetBufferSize(x + 30, y + 15);
             Console.CursorVisible = false;
             CompletionMap();
             Starting();
@@ -69,22 +72,20 @@ namespace SlimySnake
             {
                 for (int j = 0; j < y; j++)
                 {
-                   Console.Write(mass[i, j]);
+                    Console.Write(mass[i, j]);
                 }
-                Console.WriteLine();
             }
-            Console.BackgroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Green;
         }
         public void UpdateMap()
         {
             Console.SetCursorPosition(foodY, foodX);
-            Console.Write("♥");
+            Console.Write("x");
             for (int i = snakeY.Count - 1; i >= 0; --i)
             {
                 Console.SetCursorPosition(snakeY[i], snakeX[i]);
                 Console.Write("o");
-            } 
-
+            }
         }
         public void ClearMap()
         {
@@ -99,7 +100,7 @@ namespace SlimySnake
         }
         public void MoveHero()
         {
-            if (KeyInfo.Key == ConsoleKey.Escape || Console.KeyAvailable == true)
+            if (Console.KeyAvailable == true)
             {
                 KeyInfo = Console.ReadKey();
             }
@@ -134,6 +135,7 @@ namespace SlimySnake
                 Time = Time - 1;
                 if (eY == endsnakeY && eX == endsnakeX)
                 {
+                    point++;
                     snakeY.Add(endsnakeY);
                     snakeX.Add(endsnakeX);
                     eating = false;
@@ -176,8 +178,34 @@ namespace SlimySnake
                     if (snakeX[0] == snakeX[i] && snakeY[0] == snakeY[i])
                     {
                         end = false;
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Clear();
+                        Console.SetWindowSize(xg + 1, yg + 1);
+                        Console.SetBufferSize(xg + 1, yg + 1);
+                        Console.WriteLine("");
+                        Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+                        Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+                        Console.WriteLine(" ████████████████████████■    GAME OVER    ■████████████████████████");
+                        Console.WriteLine($" ████████████████████████■    SCORE: {point}     ■████████████████████████");
+                        Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+                        Console.WriteLine(" █████████████■ ДЛЯ ПЕРЕХОДА В ГЛАВНОЕ МЕНЮ НАЖМИТЕ ESC ■███████████");
+                        Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+                        Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
+                        ConsoleKeyInfo Choise = new ConsoleKeyInfo();
+                        Choise = Console.ReadKey();
                         Menu M = new Menu();
-                        M.GameOver();
+                        if (Choise.Key == ConsoleKey.Escape)
+                        {
+                            Console.Clear();
+                            M.MainMenu();
+                        }
+                        else
+                        {
+                            Console.Beep();
+                            Console.Clear();
+                            GameOver();
+                        }
                     }
                 }
             }
