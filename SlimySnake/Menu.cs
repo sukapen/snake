@@ -8,8 +8,10 @@ namespace SlimySnake
     {
         static readonly int x = 69;
         static readonly int y = 9;
-        public void Present() 
+        public void Present()
         {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(" ");
             Console.WriteLine(" █▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█");
             Console.WriteLine(" █████████████████████████████▀█▀█▀█▀█▀█████████████████████████████");
@@ -88,6 +90,7 @@ namespace SlimySnake
             Choise = Console.ReadKey();
             if (Choise.Key == ConsoleKey.Q)
             {
+                Console.Clear();
                 Easy E = new Easy();
                 do
                 {
@@ -101,6 +104,7 @@ namespace SlimySnake
             }
             else if (Choise.Key == ConsoleKey.A)
             {
+                Console.Clear();
                 Normal N = new Normal();
                 do
                 {
@@ -114,6 +118,7 @@ namespace SlimySnake
             }
             else if (Choise.Key == ConsoleKey.Z)
             {
+                Console.Clear();
                 Hard H = new Hard();
                 do
                 {
@@ -189,6 +194,8 @@ namespace SlimySnake
         }
         public void GameOver()
         {
+            Console.SetWindowSize(x + 1, y + 1);
+            Console.SetBufferSize(x + 1, y + 1);
             Console.WriteLine("");
             Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
             Console.WriteLine(" ███████████████████████████████████████████████████████████████████");
@@ -214,4 +221,5 @@ namespace SlimySnake
         }
     }
 }
+
 
