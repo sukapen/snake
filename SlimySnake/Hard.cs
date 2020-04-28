@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SlimySnake
-{
+{ 
     public class Hard
     {
         private List<int> snakeX = new List<int>();
