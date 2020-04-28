@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SlimySnake
 {
-    public class Menu
+    public class Menu 
     {
         static readonly int x = 69;
         static readonly int y = 9;
