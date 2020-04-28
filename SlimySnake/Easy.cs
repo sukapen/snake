@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SlimySnake
 {
-    public class Easy
+    public class Easy 
     {
         private List<int> snakeX = new List<int>();
         private List<int> snakeY = new List<int>();
